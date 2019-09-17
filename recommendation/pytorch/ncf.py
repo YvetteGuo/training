@@ -256,6 +256,9 @@ def main():
             description = ('Epoch {} Loss {loss.val:.4f} ({loss.avg:.4f})'
                            .format(epoch, loss=losses))
             loader.set_description(description)
+        
+        model_file = os.path.join(run_dir, 'neumf_model_{}'.format(epoch))
+        torch.save(model.state_dict(), model_file)
 
         train_time = time.time() - begin
         begin = time.time()
